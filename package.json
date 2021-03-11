@@ -1,0 +1,19 @@
+{
+  "name": "cm4025cwrepository",
+  "version": "1.0.0",
+  "description": "My Coursework Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Craiig98/CM4025CWRepository.git"
+  },
+  "author": "Craig Leith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Craiig98/CM4025CWRepository/issues"
+  },
+  "homepage": "https://github.com/Craiig98/CM4025CWRepository#readme"
+}
