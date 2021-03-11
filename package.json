@@ -4,7 +4,9 @@
   "description": "My Coursework Repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "development": "nodemon",
+    "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
+    "start": "NODE_ENV=production node ./dist/server.generated.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,15 @@
   "bugs": {
     "url": "https://github.com/Craiig98/CM4025CWRepository/issues"
   },
-  "homepage": "https://github.com/Craiig98/CM4025CWRepository#readme"
+  "homepage": "https://github.com/Craiig98/CM4025CWRepository#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-loader": "^8.2.2"
+  },
+  "dependencies": {
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0",
+    "webpack-node-externals": "^2.5.2"
+  }
 }
