@@ -8,9 +8,17 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+//comment out before building for production
+import devBundle from './devBundle'
 
 
 const app = express()
+const CURRENT_WORKING_DIR = process.cwd()
+
+//comment out before building for production
+devBundle.compile(app)
+
+
 
 // parse body params and attache them to req.body
 app.use(bodyParser.json())
@@ -36,6 +44,8 @@ app.use((err, req, res, next) => {
     console.log(err)
     }
    })
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
 
 
 export default app
