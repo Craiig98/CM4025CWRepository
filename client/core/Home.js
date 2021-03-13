@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import myImg from './../assets/images/poloGti1.jpg'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -38,9 +39,11 @@ const useStyles = makeStyles(theme => ({
             <Typography variant="h6" className={classes.title}>
             Home Page
             </Typography>
+            <Link to="/users"> Users </Link>
+            <Link to="/signup"> Sign Up </Link>
             <CardMedia className={classes.media} image={myImg} title="My Image"/>
             <Typography variant="body2" component="p" className={classes.credit}
-            color="textSecondary">Photo: Picasso</Typography>
+            color="textSecondary">Photo: Polo GTI</Typography>
             <CardContent>
             <Typography variant="body1" component="p">
             Welcome to Lab 6 home page.
