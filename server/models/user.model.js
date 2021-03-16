@@ -17,24 +17,32 @@ const UserSchema = new mongoose.Schema({
         required: 'Email is required'
         },
 
-
     hashed_password: {
         type: String,
         required: "Password is required"
         },
         salt: String,
-
-    updated: Date,
-    created: {
-        type: Date,
-        default: Date.now
-    },
+        updated: Date,
+        created: {
+            type: Date,
+            default: Date.now
+        },
 
     about: {
         type: String,
         trim: true,
-        }
+        },
 
+    profileclicks: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+
+    admin: {
+        type: Boolean,
+        default: false
+    }
 })
 
 

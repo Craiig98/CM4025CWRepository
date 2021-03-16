@@ -62,10 +62,22 @@ const hasAuthorization = (req, res, next) => {
     next()
 }
 
+const hasAdminAuthorization = (req, res, next) => {
+    const authorized = req.profile && req.auth && req.profile._id == req.auth._id && req.profile.admin == true
+    console.log(req.profile)
+    if (!(authorized)) {
+      return res.status('403').json({
+        error: "User is not authorized for admin/dashboard permission"
+      })
+    }
+    next()
+}
+
 
 export default {
  signin,
  signout,
  requireSignin,
- hasAuthorization
+ hasAuthorization,
+ hasAdminAuthorization
 }
