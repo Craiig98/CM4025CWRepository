@@ -21,8 +21,9 @@ const create = async (req, res) => {
 //Returns a list of all cars
 const list = async (req, res) => {
     try {
-        let cars = await Cars.find().select('make model')
-        res.json(cars)
+        //let cars = await Cars.find().select('make model')
+        //res.json(cars)
+        Car.find().sort({date:-1}).then(cars => res.json(cars));
         } catch (err) {
         return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
