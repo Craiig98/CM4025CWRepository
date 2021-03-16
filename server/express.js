@@ -8,6 +8,7 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import carRoutes from './routes/car.routes'
 //comment out before building for production
 import devBundle from './devBundle'
 // modules for server side rendering
@@ -42,6 +43,7 @@ app.use(cors())
 
 app.use('/', userRoutes)
 app.use('/', authRoutes)
+app.use('/', carRoutes)
 
 // template.js file
 app.get('/', (req, res) => {

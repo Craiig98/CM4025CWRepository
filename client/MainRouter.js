@@ -9,6 +9,8 @@ import EditProfile from './user/EditProfile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import UsersAdmin from './user/UsersAdmin'
+import Cars from './user/Cars'
+import AddCars from './user/AddCars'
 
 const MainRouter = () => {
  return (<div>
@@ -16,6 +18,8 @@ const MainRouter = () => {
  <Switch>
     <Route exact path="/" component={Home}/>
     <Route path="/users" component={Users}/>
+    <Route path="/cars" component={Cars}/>
+    <Route path="/addcars" component={AddCars}/>
     <Route path="/signup" component={Signup}/>
     <Route path="/signin" component={Signin}/>
     <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
