@@ -53,6 +53,9 @@ const Menu = withRouter(({history}) => (
             }}>Sign out</Button>
         </span>)
       }
+      <Link to="/addcars">
+        <Button style={isActive(history, "/addcars")}>Add Car</Button>
+      </Link>
     </Toolbar>
   </AppBar>
 ))

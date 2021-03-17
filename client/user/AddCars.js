@@ -96,16 +96,16 @@ export default function AddCars() {
         </CardActions>
       </Card>
       <Dialog open={values.open} disableBackdropClick={true}>
-        <DialogTitle>New Account</DialogTitle>
+        <DialogTitle>New Car</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            New account successfully created.
+            New Car successfully added to the site.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Link to="/signin">
+          <Link to="/cars">
             <Button color="primary" autoFocus="autoFocus" variant="contained">
-              Sign In
+              View Cars
             </Button>
           </Link>
         </DialogActions>

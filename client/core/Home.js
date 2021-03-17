@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
             Welcome to Modified Car Co
             </Typography>
             <Typography className={classes.subtitle}>
-            Home of some of the best cars around
+            Home to some of the best cars around
             </Typography>
             <CardMedia className={classes.media} image={myImg} title="My Image"/>
             <Typography variant="body2" component="p" className={classes.credit}
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
             We were established in 2021 and aim to provide photos of some of the best cars to provide you with inspiration for your own project.
             </Typography>
             <Typography className={classes.mainbody} variant="body1" component="p">
-            To get started, view all our cars. Give us feedback on your favourites by pressing like.
+            To get started, view all our cars. Give us feedback on your favourites by pressing the like button.
             </Typography>
             </CardContent>
             </Card>
