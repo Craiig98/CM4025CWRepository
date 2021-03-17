@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list} from './api-car'
+import {list} from './api-car.js'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -49,11 +49,11 @@ export default function Cars() {
     return (
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
-                All Users
+                All Cars
             </Typography>
             <List dense>
                 {cars.map((item, i) => {
-                //return <Link to={"/user/" + item._id} key={i}>
+                return <Link to={"/car/" + item._id} key={i}>
                 <ListItem button>
                 <ListItemAvatar>
                     <Avatar>
@@ -67,7 +67,7 @@ export default function Cars() {
                 </IconButton>
                 </ListItemSecondaryAction>
                 </ListItem>
-                //</Link>
+                </Link>
                 })
                 }
             </List>

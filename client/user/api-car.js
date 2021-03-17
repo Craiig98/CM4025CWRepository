@@ -3,7 +3,7 @@
 
 const create = async (car) => {
     try {
-        let response = await fetch('/api/cars/', {
+        let response = await fetch('/api/cars', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -20,7 +20,7 @@ const create = async (car) => {
 
   const list = async (signal) => {
     try {
-      let response = await fetch('/api/cars/', {
+      let response = await fetch('/api/cars', {
         method: 'GET',
         signal: signal,
       })
@@ -28,4 +28,9 @@ const create = async (car) => {
     } catch(err) {
       console.log(err)
     }
+  }
+
+  export {
+    create,
+    list
   }

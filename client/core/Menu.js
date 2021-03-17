@@ -10,7 +10,7 @@ import {Link, withRouter} from 'react-router-dom'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#ff4081'}
+    return {color: '#09b0ef'}
   else
     return {color: '#ffffff'}
 }
@@ -18,12 +18,15 @@ const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="h6" color="inherit">
-        Lab 6
+        MC
       </Typography>
       <Link to="/">
         <IconButton aria-label="Home" style={isActive(history, "/")}>
           <HomeIcon/>
         </IconButton>
+      </Link>
+      <Link to="/cars">
+        <Button style={isActive(history, "/cars")}>View Cars</Button>
       </Link>
       <Link to="/users">
         <Button style={isActive(history, "/users")}>Users</Button>

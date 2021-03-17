@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-import myImg from './../assets/images/poloGti1.jpg'
+import myImg from './../assets/images/poloGti2.jpg'
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -29,24 +29,40 @@ const useStyles = makeStyles(theme => ({
     '& a':{
     color: '#3f4771'
     }
-    }
+    },
+    mainbody: {
+    paddingTop: 20,
+    textAlign: 'left'
+    },
+    subtitle: {
+        paddingTop: 5,
+        paddingLeft: 20,
+        paddingBottom: 8,
+        textAlign: 'left',
+        fontSize: 20
+        }
    }))
 
    export default function Home(){
     const classes = useStyles()
         return (
             <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-            Home Page
+            <Typography variant="h5" className={classes.title}>
+            Welcome to Modified Car Co
             </Typography>
-            <Link to="/users"> Users </Link>
-            <Link to="/signup"> Sign Up </Link>
+            <Typography className={classes.subtitle}>
+            Home of some of the best cars around
+            </Typography>
             <CardMedia className={classes.media} image={myImg} title="My Image"/>
             <Typography variant="body2" component="p" className={classes.credit}
             color="textSecondary">Photo: Polo GTI</Typography>
             <CardContent>
             <Typography variant="body1" component="p">
-            Welcome to Lab 6 home page.
+            Thank you for visiting the Modified Car Co site.
+            We were established in 2021 and aim to provide photos of some of the best cars to provide you with inspiration for your own project.
+            </Typography>
+            <Typography className={classes.mainbody} variant="body1" component="p">
+            To get started, view all our cars. Give us feedback on your favourites by pressing like.
             </Typography>
             </CardContent>
             </Card>
