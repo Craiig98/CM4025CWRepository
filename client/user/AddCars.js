@@ -84,7 +84,8 @@ export default function AddCars() {
           <TextField id="model" label="Model" className={classes.textField} value={values.model} onChange={handleChange('model')} margin="normal"/><br/>
           <TextField id="year"  label="Year" className={classes.textField} value={values.year} onChange={handleChange('year')} margin="normal"/><br/>
           <TextField id="description" label="Description" className={classes.textField} value={values.description} onChange={handleChange('description')} margin="normal"/><br/>
-          <TextField id="price" label="Price" className={classes.textField} value={values.price} onChange={handleChange('price')} margin="normal"/><br/>
+          <TextField id="owner" label="Owner" className={classes.textField} value={values.owner} onChange={handleChange('owner')} margin="normal"/><br/>
+          <TextField id="mods" label="Mods" className={classes.textField} value={values.mods} onChange={handleChange('mods')} margin="normal"/><br/>
           <br/> {
             values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>

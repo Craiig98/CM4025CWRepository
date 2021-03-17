@@ -22,9 +22,14 @@ const CarSchema = new mongoose.Schema({
         trim: true
         },
 
-    price: {
-        type: Number,
+    owner: {
+        type: String,
         default: 0
+    },
+
+    mods: {
+        type: String,
+        trim: true
     },
 
     //Images to be added

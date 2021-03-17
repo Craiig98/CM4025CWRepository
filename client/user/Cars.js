@@ -20,6 +20,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import imgPlace from './../assets/images/imagePlaceholder.jpg'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -31,16 +34,20 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.openTitle
     },
     cards: {
-        maxWidth: 345,
+        maxWidth: 500,
+        padding: 10
       },
       media: {
-        height: 140,
+        height: 160,
       }
 }))
 
 export default function Cars() {
     const classes = useStyles()
     const [cars, setCars] = useState([])
+
+    const buttonPicker = Math.round(Math.random())
+
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -59,6 +66,64 @@ export default function Cars() {
     }
 }, [])
 
+
+    if (buttonPicker == 0) {
+        return (
+            <Paper className={classes.root} elevation={3}>
+                <Typography variant="h6" className={classes.title}>
+                    All Cars
+                </Typography>
+                <List dense>
+                    {cars.map((item, i) => {
+                    return <Link to={"/car/" + item._id} key={i}>
+                    <Card className={classes.cards}>
+                        <CardActionArea>
+                            <CardContent>
+                            <Typography component="h4">
+                                {item.make} 
+                            </Typography>
+                            <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                                {item.model}
+                            </Typography>
+    
+                            <CardMedia
+                                className={classes.media}
+                                image={imgPlace}
+                                title="Placeholder"
+                            />
+    
+                            <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                                {item.description}
+                            </Typography>
+    
+    
+                            
+    
+                    <ListItem button>
+                    <ListItemAvatar>
+                        <Avatar>
+                        <Person/>
+                        </Avatar>
+                    </ListItemAvatar>
+                     <ListItemText primary={item.make}/>
+                    <ListItemSecondaryAction>
+                    </ListItemSecondaryAction>
+                    <Button variant="contained" color="secondary">
+                        Like
+                    </Button>
+                    </ListItem>
+    
+                    </CardContent>
+                        </CardActionArea>
+                    </Card>
+                    </Link>
+    
+                    })
+                    }
+                </List>
+            </Paper>
+        )
+    } else {
     return (
         <Paper className={classes.root} elevation={3}>
             <Typography variant="h6" className={classes.title}>
@@ -67,18 +132,28 @@ export default function Cars() {
             <List dense>
                 {cars.map((item, i) => {
                 return <Link to={"/car/" + item._id} key={i}>
-
                 <Card className={classes.cards}>
                     <CardActionArea>
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {item.make}
+                        <Typography component="h4">
+                            {item.make} 
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
                             {item.model}
                         </Typography>
-                        </CardContent>
-                    </CardActionArea>
+
+                        <CardMedia
+                            className={classes.media}
+                            image={imgPlace}
+                            title="Placeholder"
+                        />
+
+                        <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                            {item.description}
+                        </Typography>
+
+
+                        
 
                 <ListItem button>
                 <ListItemAvatar>
@@ -88,16 +163,14 @@ export default function Cars() {
                 </ListItemAvatar>
                  <ListItemText primary={item.make}/>
                 <ListItemSecondaryAction>
-                <IconButton>
-                    <ArrowForward/>
-                </IconButton>
                 </ListItemSecondaryAction>
-                <Button variant="contained" color="secondary">
-                    Like
-                </Button>
+                <IconButton aria-label="Like">
+                    <FavoriteIcon style={{ color: red[500] }}/>
+                </IconButton>
                 </ListItem>
 
-
+                </CardContent>
+                    </CardActionArea>
                 </Card>
                 </Link>
 
@@ -106,5 +179,6 @@ export default function Cars() {
             </List>
         </Paper>
     )
+            }
 }
    
