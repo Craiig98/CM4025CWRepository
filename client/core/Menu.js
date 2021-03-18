@@ -51,6 +51,9 @@ const Menu = withRouter(({history}) => (
           <Button color="inherit" onClick={() => {
               auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>
+          <Link to={"/useradmin/" + auth.isAuthenticated().user._id}>
+            <Button style={isActive(history, "/useradmin/" + auth.isAuthenticated().user._id )}>Admin</Button>
+          </Link>
         </span>)
       }
       <Link to="/addcars">

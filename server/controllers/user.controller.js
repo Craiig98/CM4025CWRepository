@@ -54,6 +54,17 @@ const listadmin = async (req, res) => {
     }
   }
 
+  const listdashboard = async (req, res) => {
+    try {
+      let users = await User.find().select('name email about updated created admin')
+      res.json(users)
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+  }
+
 const read = (req, res) => {
     req.profile.hashed_password = undefined
     req.profile.salt = undefined
@@ -97,6 +108,7 @@ export default {
  read,
  list,
  listadmin,
+ listdashboard,
  remove,
  update
 }

@@ -41,6 +41,8 @@ app.use(helmet())
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
 
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
 app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', carRoutes)
@@ -76,7 +78,6 @@ app.use((err, req, res, next) => {
     console.log(err)
     }
    })
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 
 

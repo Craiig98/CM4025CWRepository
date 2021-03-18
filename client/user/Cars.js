@@ -96,7 +96,7 @@ export default function Cars() {
                             />
     
                             <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
-                                {normalButtonClicks}
+                                {item.description}
                             </Typography>
     
     
