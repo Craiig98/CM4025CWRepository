@@ -48,6 +48,9 @@ export default function Cars() {
 
     const buttonPicker = Math.round(Math.random())
 
+    var normalButtonTotalClicks = 0
+    var heartButtonTotalClicks = 0
+
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -64,7 +67,7 @@ export default function Cars() {
         return function cleanup(){
         abortController.abort()
     }
-}, [])
+    }, [])
 
 
     if (buttonPicker == 0) {
@@ -93,7 +96,7 @@ export default function Cars() {
                             />
     
                             <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
-                                {item.description}
+                                {normalButtonClicks}
                             </Typography>
     
     
@@ -108,7 +111,7 @@ export default function Cars() {
                      <ListItemText primary={item.make}/>
                     <ListItemSecondaryAction>
                     </ListItemSecondaryAction>
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary" onClick={() => {normalButtonTotalClicks++}}>
                         Like
                     </Button>
                     </ListItem>
@@ -179,6 +182,6 @@ export default function Cars() {
             </List>
         </Paper>
     )
-            }
+    }
 }
    

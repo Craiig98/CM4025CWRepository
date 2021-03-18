@@ -56,6 +56,9 @@ const Menu = withRouter(({history}) => (
       <Link to="/addcars">
         <Button style={isActive(history, "/addcars")}>Add Car</Button>
       </Link>
+      <Link to="/dashboard">
+        <Button style={isActive(history, "/dashboard")}>Dashboard</Button>
+      </Link>
     </Toolbar>
   </AppBar>
 ))

@@ -34,11 +34,17 @@ const CarSchema = new mongoose.Schema({
 
     //Images to be added
 
-    buttonclicks: {
+    heartButtonClicks: {
         type: Number,
         default: 0,
         min: 0
     },
+
+    normalButtonClicks: {
+        type: Number,
+        default: 0,
+        min: 0
+    }
 
 })
 
