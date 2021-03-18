@@ -30,28 +30,11 @@ const create = async (user) => {
     }
   }
 
+  //This api call is used for the car list for the dashboard
   const listadmin = async (params, credentials, signal) => {
     console.log("listing the users for admin")
     try {
       let response = await fetch('/api/users/admin/' + params.userId, {
-        method: 'GET',
-        signal: signal,
-         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + credentials.t
-        }
-     })
-      return await response.json()
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  const listdashboard = async (credentials, signal) => {
-    console.log("listing the users for admin")
-    try {
-      let response = await fetch('/api/dashboard/', {
         method: 'GET',
         signal: signal,
          headers: {
@@ -120,7 +103,6 @@ const create = async (user) => {
     create,
     list,
     listadmin,
-    listdashboard,
     read,
     update,
     remove

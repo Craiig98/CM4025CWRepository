@@ -4,11 +4,9 @@ import authCtrl from '../controllers/auth.controller'
 
 const router = express.Router()
 
+//Used for the admin dashboard
 router.route('/api/users/admin/:userId')
   .get(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, userCtrl.listadmin)
-
-router.route('/api/dashboard')
-  .get(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, userCtrl.listdashboard)
 
 router.route('/api/users')
  .get(userCtrl.list)

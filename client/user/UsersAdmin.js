@@ -28,8 +28,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function Users({ match }) {
     const classes = useStyles()
-    const [users, setUsers] = useState([])
+    const [cars, setCars] = useState([])
     const jwt = auth.isAuthenticated()
+
+    var nButtonClicks = 0
+    var hButtonClicks = 0
+
+    cars.forEach((car) => {
+      nButtonClicks += car.normalButtonClicks
+    })
+
+    cars.forEach((car) => {
+      hButtonClicks += car.heartButtonClicks
+    })
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -41,7 +52,7 @@ export default function Users({ match }) {
             } else {
                 console.log("Here is the user data")
                 console.log(data)
-              setUsers(data)
+              setCars(data)
             }
           })
 
@@ -53,29 +64,46 @@ export default function Users({ match }) {
 return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
-        All Users ({users.length})
-      </Typography>
-      <List dense>
-       {users.map((item, i) => {
-        return <Link to={"/user/" + item._id} key={i}>
-                  <ListItem button>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <Person/>
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={item.name}/>
-                    <ListItemText primary={"Administrator: " + item.admin}/>
-                    <ListItemSecondaryAction>
-                    <IconButton>
-                        <ArrowForward/>
-                    </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-               </Link>
-             })
-           }
-      </List>
+                Heart Button Clicks
+            </Typography>
+            <List dense>
+                {cars.map((item, i) => {
+                return <Link to={"/dashboard"} key={i}>
+                <ListItem card>
+                <ListItemText primary={item.make + " " + item.model}/>
+                <ListItemSecondaryAction>
+                    <ListItemText primary={item.heartButtonClicks}/>
+                </ListItemSecondaryAction>
+                </ListItem>
+                </Link>
+                })
+                }
+            </List>
+            <Typography variant="h6" gutterBottom variant="h4" className={classes.title}>
+                {hButtonClicks}
+            </Typography>
+
+            <Typography variant="h6" className={classes.title}>
+                Standard Button Clicks
+            </Typography>
+            <List dense>
+                {cars.map((item, i) => {
+                return <Link to={"/dashboard"} key={i}>
+                <ListItem card >
+                <ListItemText primary={item.make + " " + item.model}/>
+                <ListItemSecondaryAction>
+                <ListItemText primary={item.normalButtonClicks}/>
+                </ListItemSecondaryAction>
+                </ListItem>
+                </Link>
+
+
+                })
+                }
+            </List>
+            <Typography variant="h6" className={classes.title}>
+                {nButtonClicks}
+            </Typography>
     </Paper>
   )
 }

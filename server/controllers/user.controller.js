@@ -1,4 +1,6 @@
 import User from '../models/user.model'
+//Car used for the admin dashboard function only
+import Car from '../models/car.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 
@@ -43,21 +45,11 @@ const userByID = async (req, res, next, id) => {
         }
 }
 
+//This function is bit different, it is used for the admin dashboard
+//and gets a list of the cars rather than users
 const listadmin = async (req, res) => {
     try {
-      let users = await User.find().select('name email about updated created admin')
-      res.json(users)
-    } catch (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-  }
-
-  const listdashboard = async (req, res) => {
-    try {
-      let users = await User.find().select('name email about updated created admin')
-      res.json(users)
+      Car.find().sort({date:-1}).then(cars => res.json(cars)); 
     } catch (err) {
       return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
@@ -108,7 +100,6 @@ export default {
  read,
  list,
  listadmin,
- listdashboard,
  remove,
  update
 }

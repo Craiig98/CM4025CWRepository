@@ -32,6 +32,7 @@ const Menu = withRouter(({history}) => (
         <Button style={isActive(history, "/users")}>Users</Button>
       </Link>
       {
+        //Only appear when no user is signed in
         !auth.isAuthenticated() && (<span>
           <Link to="/signup">
             <Button style={isActive(history, "/signup")}>Sign up
@@ -44,6 +45,8 @@ const Menu = withRouter(({history}) => (
         </span>)
       }
       {
+        //Only appear when user is signed in
+        //The dashboard button will appear to all users, but only retrieve data is the user has admin privilages
         auth.isAuthenticated() && (<span>
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
@@ -51,17 +54,14 @@ const Menu = withRouter(({history}) => (
           <Button color="inherit" onClick={() => {
               auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>
+          <Link to="/addcars">
+            <Button style={isActive(history, "/addcars")}>Add Car</Button>
+          </Link>
           <Link to={"/useradmin/" + auth.isAuthenticated().user._id}>
-            <Button style={isActive(history, "/useradmin/" + auth.isAuthenticated().user._id )}>Admin</Button>
+            <Button style={isActive(history, "/useradmin/" + auth.isAuthenticated().user._id )}>Dashboard</Button>
           </Link>
         </span>)
       }
-      <Link to="/addcars">
-        <Button style={isActive(history, "/addcars")}>Add Car</Button>
-      </Link>
-      <Link to="/dashboard">
-        <Button style={isActive(history, "/dashboard")}>Dashboard</Button>
-      </Link>
     </Toolbar>
   </AppBar>
 ))

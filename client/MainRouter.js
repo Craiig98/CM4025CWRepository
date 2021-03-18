@@ -11,7 +11,6 @@ import Menu from './core/Menu'
 import UsersAdmin from './user/UsersAdmin'
 import Cars from './user/Cars'
 import AddCars from './user/AddCars'
-import Dashboard from './user/Dashboard'
 
 const MainRouter = () => {
  return (<div>
@@ -21,7 +20,6 @@ const MainRouter = () => {
     <Route path="/users" component={Users}/>
     <Route path="/cars" component={Cars}/>
     <Route path="/addcars" component={AddCars}/>
-    <Route path="/dashboard" component={Dashboard}/>
     <Route path="/signup" component={Signup}/>
     <Route path="/signin" component={Signin}/>
     <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>

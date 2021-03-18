@@ -9,8 +9,6 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import {Link} from 'react-router-dom'
 import {list} from './api-car.js'
-import {listdashboard} from './api-user.js'
-import auth from './../auth/auth-helper'
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 export default function Cars() {
     const classes = useStyles()
     const [cars, setCars] = useState([])
-    const jwt = auth.isAuthenticated()
 
     var nButtonClicks = 0
     var hButtonClicks = 0
@@ -51,21 +48,19 @@ export default function Cars() {
     useEffect(() => {
         const abortController = new AbortController()
         const signal = abortController.signal
-    
-        listdashboard({t: jwt.token}, signal).then((data) => {
-          if (data && data.error) {
+
+        list(signal).then((data) => {
+        if (data && data.error) {
             console.log(data.error)
-          } else {
-              console.log("Here is the user data")
-              console.log(data)
+        } else {
             setCars(data)
-          }
-        })
-    
-        return function cleanup(){
-          abortController.abort()
         }
-      } )
+        })
+
+        return function cleanup(){
+        abortController.abort()
+    }
+    }, [])
 
     return (
         <Paper className={classes.root} elevation={3}>
