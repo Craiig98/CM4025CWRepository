@@ -46,9 +46,10 @@ export default function AddCars() {
   const [values, setValues] = useState({
     make: '',
     model: '',
-    year: 0,
+    year: '',
     description: '',
-    price: 0,
+    owner: '',
+    mods: '',
     open: false,
     error: ''
   })
@@ -63,7 +64,8 @@ export default function AddCars() {
       model: values.model || undefined,
       year: values.year || undefined,
       description: values.description || undefined,
-      price: values.price || undefined
+      owner: values.owner || undefined,
+      mods: values.mods || undefined
     }
     create(car).then((data) => {
       if (data.error) {

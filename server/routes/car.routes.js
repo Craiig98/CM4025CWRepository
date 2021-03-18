@@ -7,9 +7,9 @@ const router = express.Router()
 router.route('/api/cars')
  .get(carCtrl.list)
  .post(carCtrl.create)
+ .put(carCtrl.updateHearts)
 
- router.route('/api/dashboard/:userId')
- .get(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, carCtrl.listdashboard)
-
+router.route('/api/cars/:userId')
+ .put(carCtrl.updateHearts)
 
 export default router

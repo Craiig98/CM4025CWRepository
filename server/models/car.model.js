@@ -24,7 +24,7 @@ const CarSchema = new mongoose.Schema({
 
     owner: {
         type: String,
-        default: 0
+        trim: true
     },
 
     mods: {
@@ -32,14 +32,16 @@ const CarSchema = new mongoose.Schema({
         trim: true
     },
 
-    //Images to be added
+    //Images to be added if time allows
 
+    //This references the heart shape button variant
     heartButtonClicks: {
         type: Number,
         default: 0,
         min: 0
     },
 
+    //This references the more standard shape button variant
     normalButtonClicks: {
         type: Number,
         default: 0,

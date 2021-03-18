@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list} from './api-car.js'
+//For loading the full list of cars and storing the likes
+import {list, updateHearts} from './api-car.js'
 
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card';
@@ -51,6 +52,8 @@ export default function Cars() {
     var normalButtonTotalClicks = 0
     var heartButtonTotalClicks = 0
 
+    
+
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -69,6 +72,12 @@ export default function Cars() {
     }
     }, [])
 
+    const clickSubmit = () => {
+        
+        updateHearts({
+          item: item._id}, car)
+      }
+
 
     if (buttonPicker == 0) {
         return (
@@ -78,7 +87,7 @@ export default function Cars() {
                 </Typography>
                 <List dense>
                     {cars.map((item, i) => {
-                    return <Link to={"/car/" + item._id} key={i}>
+                    return <Link to={"/cars"}>
                     <Card className={classes.cards}>
                         <CardActionArea>
                             <CardContent>
@@ -110,10 +119,10 @@ export default function Cars() {
                     </ListItemAvatar>
                      <ListItemText primary={item.make}/>
                     <ListItemSecondaryAction>
-                    </ListItemSecondaryAction>
-                    <Button variant="contained" color="secondary" onClick={() => {normalButtonTotalClicks++}}>
+                    <Button variant="contained" color="secondary" onClick={clickSubmit}>
                         Like
                     </Button>
+                    </ListItemSecondaryAction>
                     </ListItem>
     
                     </CardContent>

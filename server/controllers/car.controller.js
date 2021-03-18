@@ -31,21 +31,24 @@ const list = async (req, res) => {
         }       
 }
 
-const listdashboard = async (req, res) => {
+
+const updateHearts = async (req, res) => {
     try {
-        //let cars = await Cars.find().select('make model')
-        //res.json(cars)
-        Car.find().sort({date:-1}).then(cars => res.json(cars));
+        let car = req.profile
+        car = extend(car, req.body)
+        car.heartButtonClicks = car.heartButtonClicks + 1
+        await car.save()
+        res.json(car)
         } catch (err) {
         return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
         })
-        }       
+        }
 }
 
 
 export default {
     create,
     list,
-    listdashboard
+    updateHearts
    }
