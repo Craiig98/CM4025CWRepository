@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 
 
 
+
 // Connection URL
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri.substring(1, config.mongoUri.length - 1), { useNewUrlParser: true, useCreateIndex: true,

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
+import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
@@ -18,7 +19,10 @@ import auth from './../auth/auth-helper'
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
         padding: theme.spacing(1),
-        margin: theme.spacing(5)
+        margin: theme.spacing(5),
+        maxWidth: 600,
+        margin: 'auto',
+        marginTop: 40
     }),
     title: {
         margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
@@ -62,7 +66,7 @@ export default function Users({ match }) {
 }, [match.params.userId])
 
 return (
-    <Paper className={classes.root} elevation={4}>
+    <Card className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
                 Heart Button Clicks
             </Typography>
@@ -79,8 +83,9 @@ return (
                 })
                 }
             </List>
-            <Typography variant="h6" gutterBottom variant="h4" className={classes.title}>
-                {hButtonClicks}
+            
+            <Typography variant="h6" style={{textAlign: "right", paddingRight: 10}} className={classes.title} >
+                {"Total: " + hButtonClicks}
             </Typography>
 
             <Typography variant="h6" className={classes.title}>
@@ -101,9 +106,9 @@ return (
                 })
                 }
             </List>
-            <Typography variant="h6" className={classes.title}>
-                {nButtonClicks}
+            <Typography variant="h6" style={{textAlign: "right", paddingRight: 10}} className={classes.title}>
+                {"Total: " + nButtonClicks}
             </Typography>
-    </Paper>
+    </Card>
   )
 }
