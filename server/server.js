@@ -3,7 +3,6 @@ import app from './express'
 import mongoose from 'mongoose'
 
 
-//const uri = "mongodb+srv://MyDBAdmin:I3nmOKU2Ign3a7te@cluster0.zh61e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 // Connection URL
 mongoose.Promise = global.Promise
