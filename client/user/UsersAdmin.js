@@ -38,6 +38,7 @@ export default function Users({ match }) {
     var nButtonClicks = 0
     var hButtonClicks = 0
 
+    //Get the total number of clicks for each button type from the list recieved from database
     cars.forEach((car) => {
       nButtonClicks += car.normalButtonClicks
     })

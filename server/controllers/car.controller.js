@@ -31,7 +31,7 @@ const list = async (req, res) => {
         }       
 }
 
-
+//Meant to update car and likes for HEART button type
 const updateHearts = async (req, res) => {
     try {
         let car = req.profile
@@ -46,6 +46,7 @@ const updateHearts = async (req, res) => {
         }
 }
 
+//Meant to update car and likes for NORMAL button type
 const updateNormal = async (req, res) => {
     try {
         let car = req.profile
