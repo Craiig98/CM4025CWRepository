@@ -11,5 +11,6 @@ router.route('/api/cars')
 
 router.route('/api/cars/:userId')
  .put(carCtrl.updateHearts)
+ .put(carCtrl.updateNormal)
 
 export default router

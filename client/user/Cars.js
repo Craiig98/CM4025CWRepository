@@ -9,11 +9,10 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 //For loading the full list of cars and storing the likes
-import {list, updateHearts} from './api-car.js'
+import {list, updateHearts, updateNormal} from './api-car.js'
 
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card';
@@ -28,32 +27,48 @@ import { red } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
         padding: theme.spacing(1),
-        margin: theme.spacing(5)
+        margin: theme.spacing(5),
+        textAlign: 'center'
     }),
     title: {
         margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
         color: theme.palette.openTitle
     },
     cards: {
-        maxWidth: 500,
-        padding: 10
-      },
-      media: {
+        maxWidth: 600,
+        padding: 10,
+        margin: 'auto',
+        marginBottom: 15,
+        alignSelf: 'center'
+    },
+    media: {
         height: 160,
-      }
+        marginBottom: 10
+    },
+    bodytext: {
+        textAlign: 'left'
+    },
 }))
 
 export default function Cars() {
     const classes = useStyles()
     const [cars, setCars] = useState([])
+    const [values, setValues] = useState({
+        make: '',
+        model:'',
+        description: '',
+        year: '',
+        owner: '',
+        mods: '',
+        heartButtonTotalClicks: '',
+        normalButtonTotalClicks: '',
+        error: ''
+      })
 
     const buttonPicker = Math.round(Math.random())
 
-    var normalButtonTotalClicks = 0
-    var heartButtonTotalClicks = 0
-
-    
-
+    //var normalButtonTotalClicks = 0
+    //var heartButtonTotalClicks = 0
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -72,13 +87,46 @@ export default function Cars() {
     }
     }, [])
 
-    const clickSubmit = () => {
+    //When heart type button clicked
+    const clickSubmitHearts = () => {
         
+        const car = {
+            heartButtonTotalClicks: values.heartButtonTotalClicks || undefined,
+          }
+        
+        //Call function to update clicks by one
         updateHearts({
-          item: item._id}, car)
-      }
+            carId: match.params.carId
+        }, car).then((data) => {
+          if (data && data.error) {
+            setValues({...values, error: data.error})
+          } else {
+            setValues({...values, carId: data._id})
+          }
+        })
+    }
 
+    //When normal type button clicked
+    const clickSubmitNormal = () => {
+        
+        const car = {
+            normalButtonTotalClicks: values.normalButtonTotalClicks || undefined,
+          }
 
+        //Call function to update clicks by one
+        updateNormal({
+            carId: match.params.carId
+        }, car).then((data) => {
+          if (data && data.error) {
+            setValues({...values, error: data.error})
+          } else {
+            setValues({...values, carId: data._id})
+          }
+        })
+    }
+
+    //Depending on the result of random selection, display either the front end 
+    //which normal type like button or heart shape like button
     if (buttonPicker == 0) {
         return (
             <Paper className={classes.root} elevation={3}>
@@ -91,10 +139,10 @@ export default function Cars() {
                     <Card className={classes.cards}>
                         <CardActionArea>
                             <CardContent>
-                            <Typography component="h4">
+                            <Typography className={classes.bodytext} component="h4">
                                 {item.make} 
                             </Typography>
-                            <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                            <Typography className={classes.bodytext} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
                                 {item.model}
                             </Typography>
     
@@ -104,27 +152,25 @@ export default function Cars() {
                                 title="Placeholder"
                             />
     
-                            <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                            <Typography className={classes.bodytext} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
                                 {item.description}
                             </Typography>
-    
-    
-                            
-    
+                            <Typography className={classes.bodytext} style={{ fontWeight: 600 }} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                                {"Mods List: " + item.mods}
+                            </Typography>
                     <ListItem button>
                     <ListItemAvatar>
                         <Avatar>
                         <Person/>
                         </Avatar>
                     </ListItemAvatar>
-                     <ListItemText primary={item.make}/>
+                     <ListItemText primary={item.owner}/>
                     <ListItemSecondaryAction>
-                    <Button variant="contained" color="secondary" onClick={clickSubmit}>
+                    <Button variant="contained" color="primary" onClick={clickSubmitNormal}>
                         Like
                     </Button>
                     </ListItemSecondaryAction>
                     </ListItem>
-    
                     </CardContent>
                         </CardActionArea>
                     </Card>
@@ -136,6 +182,7 @@ export default function Cars() {
             </Paper>
         )
     } else {
+    //Return same but with hearts
     return (
         <Paper className={classes.root} elevation={3}>
             <Typography variant="h6" className={classes.title}>
@@ -147,10 +194,10 @@ export default function Cars() {
                 <Card className={classes.cards}>
                     <CardActionArea>
                         <CardContent>
-                        <Typography component="h4">
+                        <Typography className={classes.bodytext} component="h4">
                             {item.make} 
                         </Typography>
-                        <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                        <Typography className={classes.bodytext} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
                             {item.model}
                         </Typography>
 
@@ -160,27 +207,25 @@ export default function Cars() {
                             title="Placeholder"
                         />
 
-                        <Typography gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                        <Typography className={classes.bodytext} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
                             {item.description}
                         </Typography>
-
-
-                        
-
+                        <Typography className={classes.bodytext} style={{ fontWeight: 600 }} gutterBottom variant="h5" variant="body2" color="textSecondary" component="p">
+                                {"Mods List: " + item.mods}
+                        </Typography>
                 <ListItem button>
                 <ListItemAvatar>
                     <Avatar>
                     <Person/>
                     </Avatar>
                 </ListItemAvatar>
-                 <ListItemText primary={item.make}/>
+                 <ListItemText primary={item.owner}/>
                 <ListItemSecondaryAction>
                 </ListItemSecondaryAction>
-                <IconButton aria-label="Like">
-                    <FavoriteIcon style={{ color: red[500] }}/>
+                <IconButton onClick={clickSubmitHearts} aria-label="Like">
+                    <FavoriteIcon style={{ color: red[500], fontSize: 30 }}/>
                 </IconButton>
                 </ListItem>
-
                 </CardContent>
                     </CardActionArea>
                 </Card>

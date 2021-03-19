@@ -46,9 +46,24 @@ const updateHearts = async (req, res) => {
         }
 }
 
+const updateNormal = async (req, res) => {
+    try {
+        let car = req.profile
+        car = extend(car, req.body)
+        car.normalButtonClicks = car.normalButtonClicks + 1
+        await car.save()
+        res.json(car)
+        } catch (err) {
+        return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+        })
+        }
+}
+
 
 export default {
     create,
     list,
-    updateHearts
+    updateHearts,
+    updateNormal
    }
